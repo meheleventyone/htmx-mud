@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>HTMX MUD</title>
+  <link rel="stylesheet" href="https://unpkg.com/mvp.css">
+  <script src="https://unpkg.com/htmx.org@1.9.5"></script>
+</head>
+<body>
+    <h1>The game is <%= it.gameRunning %> with <%= it.numPlayers %> players!</h1>
+<% if (!it.name) {%>
+    <p>We don't know who you are so please setup some information to play!</p>
+    <form hx-post="/players" hx-swap="outerHTML">
+        <div>
+            <label>Name</label>
+            <input type="text" name="playerName" placeholder="Crusty Jim"></input>
+        </div>
+        <button>Join the Fun!</button>
+    </form>
+<% } else { %>
+  <div>
+    <h1>Hello, <%= it.name %></h1>
+  </div>
+<% } %>
+</body>
+</html>
